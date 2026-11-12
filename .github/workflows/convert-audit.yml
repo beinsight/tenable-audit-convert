@@ -21,7 +21,7 @@ jobs:
 
       - name: Convert PowerShell scripts to audit file
         run: |
-          python generate_audit_folder.py -n "Windows 11 Enterprise" -d powershell
+          python audit_convert.py -n "Windows 11 Enterprise" -d powershell
           mkdir -p audits
           mv ./*.audit audits/
           grep -c "<custom_item>" audits/*.audit
