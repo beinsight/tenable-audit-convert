@@ -26,5 +26,18 @@
   ps_encoded_args: YES
   only_show_cmd_output: YES
 </custom_item>
+
+# ============================================================
+# CHECK 3: script3
+# ============================================================
+<custom_item>
+  type: AUDIT_POWERSHELL
+  description: "script3"
+  value_type: POLICY_TEXT
+  value_data: ""
+  powershell_args: 'VwByAGkAdABlAC0AVwBhAHIAbgBpAG4AZwAgACIATABpAG4AZQAgADQAIgA='
+  ps_encoded_args: YES
+  only_show_cmd_output: YES
+</custom_item>
 </group_policy>
 </check_type>
