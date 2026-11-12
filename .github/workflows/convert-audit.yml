@@ -1,0 +1,32 @@
+name: Convert audit
+
+on:
+  push:
+    paths:
+      - 'powershell/*.ps1'
+      - 'audit_convert.py'
+  workflow_dispatch:        # adds a manual "Run workflow" button
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Convert PowerShell scripts to audit file
+        run: |
+          python audit_convert.py -n "Windows 11 Enterprise" -d powershell
+          mkdir -p audits
+          mv ./*.audit audits/
+          ls -l audits
+          grep -c "<custom_item>" audits/*.audit
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-files
+          path: audits/
+          retention-days: 7
