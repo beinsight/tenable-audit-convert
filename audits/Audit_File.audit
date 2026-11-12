@@ -1,0 +1,30 @@
+<check_type:"Windows" version:"2">
+<group_policy:"Audit_File">
+
+# ============================================================
+# CHECK 1: sample
+# ============================================================
+<custom_item>
+  type: AUDIT_POWERSHELL
+  description: "sample"
+  value_type: POLICY_TEXT
+  value_data: ""
+  powershell_args: 'bABsAHMACgA='
+  ps_encoded_args: YES
+  only_show_cmd_output: YES
+</custom_item>
+
+# ============================================================
+# CHECK 2: script2
+# ============================================================
+<custom_item>
+  type: AUDIT_POWERSHELL
+  description: "script2"
+  value_type: POLICY_TEXT
+  value_data: ""
+  powershell_args: 'VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAiAFQAbwB0AG8AIgAKAHQAcgB5ACAAewB7AA=='
+  ps_encoded_args: YES
+  only_show_cmd_output: YES
+</custom_item>
+</group_policy>
+</check_type>
