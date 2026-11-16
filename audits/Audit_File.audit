@@ -91,5 +91,18 @@
   ps_encoded_args: YES
   only_show_cmd_output: YES
 </custom_item>
+
+# ============================================================
+# CHECK 8: testscript5
+# ============================================================
+<custom_item>
+  type: AUDIT_POWERSHELL
+  description: "testscript5"
+  value_type: POLICY_TEXT
+  value_data: ""
+  powershell_args: 'CgA='
+  ps_encoded_args: YES
+  only_show_cmd_output: YES
+</custom_item>
 </group_policy>
 </check_type>
