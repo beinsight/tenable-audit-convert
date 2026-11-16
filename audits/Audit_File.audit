@@ -2,20 +2,7 @@
 <group_policy:"Audit_File">
 
 # ============================================================
-# CHECK 1: sample.ps1  [INFORMATIONAL]
-# ============================================================
-<custom_item>
-  type: AUDIT_POWERSHELL
-  description: "sample"
-  value_type: POLICY_TEXT
-  value_data: ""
-  powershell_args: 'bABsAHMACgA='
-  ps_encoded_args: YES
-  only_show_cmd_output: YES
-</custom_item>
-
-# ============================================================
-# CHECK 2: script2.ps1  [INFORMATIONAL]
+# CHECK 1: script2.ps1  [INFORMATIONAL]
 # ============================================================
 <custom_item>
   type: AUDIT_POWERSHELL
@@ -28,7 +15,7 @@
 </custom_item>
 
 # ============================================================
-# CHECK 3: script3.ps1  [INFORMATIONAL]
+# CHECK 2: script3.ps1  [INFORMATIONAL]
 # ============================================================
 <custom_item>
   type: AUDIT_POWERSHELL
@@ -41,7 +28,7 @@
 </custom_item>
 
 # ============================================================
-# CHECK 4: testscript.ps1  [EVALUATION]
+# CHECK 3: testscript.ps1  [EVALUATION]
 # ============================================================
 <custom_item>
   type: AUDIT_POWERSHELL
@@ -54,7 +41,7 @@
 </custom_item>
 
 # ============================================================
-# CHECK 5: testscript2.ps1  [EVALUATION]
+# CHECK 4: testscript2.ps1  [EVALUATION]
 # ============================================================
 <custom_item>
   type: AUDIT_POWERSHELL
@@ -67,7 +54,7 @@
 </custom_item>
 
 # ============================================================
-# CHECK 6: testscript3.ps1  [EVALUATION]
+# CHECK 5: testscript3.ps1  [EVALUATION]
 # ============================================================
 <custom_item>
   type: AUDIT_POWERSHELL
@@ -80,7 +67,7 @@
 </custom_item>
 
 # ============================================================
-# CHECK 7: testscript4.ps1  [INFORMATIONAL]
+# CHECK 6: testscript4.ps1  [INFORMATIONAL]
 # ============================================================
 <custom_item>
   type: AUDIT_POWERSHELL
@@ -93,7 +80,7 @@
 </custom_item>
 
 # ============================================================
-# CHECK 8: testscript5.ps1  [INFORMATIONAL]
+# CHECK 7: testscript5.ps1  [INFORMATIONAL]
 # ============================================================
 <custom_item>
   type: AUDIT_POWERSHELL
