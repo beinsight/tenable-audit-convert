@@ -5,6 +5,7 @@ on:
     paths:
       - 'powershell/*.ps1'
       - 'audit_convert.py'
+      - '.github/workflows/convert-audit.yml'
   workflow_dispatch:
 
 jobs:
@@ -21,15 +22,13 @@ jobs:
 
       - name: Convert PowerShell scripts to audit file
         run: |
-          python audit_convert.py -n "Audit_File" -d powershell
-          mkdir -p audits
-          mv ./*.audit audits/
-          grep -c "<custom_item>" audits/*.audit
+          python audit_convert.py -n "Audit_File"
+          grep -c "<custom_item>" audits/Audit_File.audit
 
       - name: Commit audit file to the repo
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add audits/
+          git add audits/Audit_File.audit
           git commit -m "Update audit file" || echo "No changes"
           git push

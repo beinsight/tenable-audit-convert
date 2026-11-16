@@ -1,0 +1,76 @@
+<check_type:"Unix">
+
+# Origem: bash1.sh
+# | #!/bin/bash
+# | #
+# | # Name       Date       Description
+# | # -----------------------------------------------------------------
+# | # R. Casagrande  19/08/2025  Ensure X Window System is not installed
+# | 
+# | SERVICE_INSTALL_STATUS_COMMAND=$(rpm -qa xorg-x11-server-*)
+# | 
+# | if [[ -z $SERVICE_INSTALL_STATUS_COMMAND ]]; then
+# |     echo "Check status: Compliant."
+# |     exit "${XCCDF_RESULT_PASS:-101}"
+# | else
+# |     echo "Check status: Non-compliant. The following xorg-x11-server packages are installed: $SERVICE_INSTALL_STATUS_COMMAND"
+# |     exit "${XCCDF_RESULT_FAIL:-102}"
+# | fi
+    <custom_item>
+      type          : CMD_EXEC
+      description   : "Ensure X Window System is not installed"
+      cmd           : "echo IyEvYmluL2Jhc2gKIwojIE5hbWUgICAgICAgRGF0ZSAgICAgICBEZXNjcmlwdGlvbgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiMgUi4gQ2FzYWdyYW5kZSAgMTkvMDgvMjAyNSAgRW5zdXJlIFggV2luZG93IFN5c3RlbSBpcyBub3QgaW5zdGFsbGVkCgpTRVJWSUNFX0lOU1RBTExfU1RBVFVTX0NPTU1BTkQ9JChycG0gLXFhIHhvcmcteDExLXNlcnZlci0qKQoKaWYgW1sgLXogJFNFUlZJQ0VfSU5TVEFMTF9TVEFUVVNfQ09NTUFORCBdXTsgdGhlbgogICAgZWNobyAiQ2hlY2sgc3RhdHVzOiBDb21wbGlhbnQuIgogICAgZXhpdCAiJHtYQ0NERl9SRVNVTFRfUEFTUzotMTAxfSIKZWxzZQogICAgZWNobyAiQ2hlY2sgc3RhdHVzOiBOb24tY29tcGxpYW50LiBUaGUgZm9sbG93aW5nIHhvcmcteDExLXNlcnZlciBwYWNrYWdlcyBhcmUgaW5zdGFsbGVkOiAkU0VSVklDRV9JTlNUQUxMX1NUQVRVU19DT01NQU5EIgogICAgZXhpdCAiJHtYQ0NERl9SRVNVTFRfRkFJTDotMTAyfSIKZmkK | base64 -d | bash"
+      expect        : "^Check status: Compliant"
+      match_case    : YES
+      timeout       : "300"
+      dont_echo_cmd : YES
+    </custom_item>
+
+# Origem: bash2.sh
+# | #!/bin/bash
+# | #
+# | # Name       Date       Description
+# | # ------------------------------------------------------------------------------------
+# | # R. Casagrande  29/01/2024  Ensure that Trellix HX agent executable version is approved
+# | 
+# | EXPECTED_VALUE=34.0
+# | SERVICE_VERSION_COMMAND="/opt/fireeye/bin/xagt -v"
+# | 
+# | # Capture version output and errors
+# | CMD_OUTPUT=$($SERVICE_VERSION_COMMAND 2>/dev/null)
+# | STDERR_OUTPUT=$($SERVICE_VERSION_COMMAND 2>&1 >/dev/null)
+# | 
+# | # Extract actual service version
+# | CAPTURE_ACTUAL_SERVICE_VERSION=$(echo "$CMD_OUTPUT" | grep -oP '^v\s*\K[\d.]+')
+# | 
+# | # Function to compare versions
+# | compare_version_equal_or_greater_than() {
+# |     [ "$1" = "$2" ] || [ "$(printf '%s\n' "$1" "$2" | sort -V | head -n 1)" != "$1" ]
+# | }
+# | 
+# | # Assess actual service version against expected value
+# | if [[ -n "$CAPTURE_ACTUAL_SERVICE_VERSION" ]]; then
+# |     if compare_version_equal_or_greater_than "$CAPTURE_ACTUAL_SERVICE_VERSION" "$EXPECTED_VALUE"; then
+# |         echo "Check status: Compliant."
+# |         exit "${XCCDF_RESULT_PASS:-101}"
+# |     else
+# |         echo "Check status: Non-compliant. Current version $CAPTURE_ACTUAL_SERVICE_VERSION is outdated. The minimum required version is $EXPECTED_VALUE."
+# |         exit "${XCCDF_RESULT_FAIL:-102}"
+# |     fi
+# | else
+# |     if [[ -n "$STDERR_OUTPUT" ]]; then
+# |         echo "Check status: Error. Error details: $STDERR_OUTPUT"
+# |         exit "${XCCDF_RESULT_ERROR:-103}"
+# |     fi
+# | fi
+    <custom_item>
+      type          : CMD_EXEC
+      description   : "Ensure that Trellix HX agent executable version is approved"
+      cmd           : "echo IyEvYmluL2Jhc2gKIwojIE5hbWUgICAgICAgRGF0ZSAgICAgICBEZXNjcmlwdGlvbgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQojIFIuIENhc2FncmFuZGUgIDI5LzAxLzIwMjQgIEVuc3VyZSB0aGF0IFRyZWxsaXggSFggYWdlbnQgZXhlY3V0YWJsZSB2ZXJzaW9uIGlzIGFwcHJvdmVkCgpFWFBFQ1RFRF9WQUxVRT0zNC4wClNFUlZJQ0VfVkVSU0lPTl9DT01NQU5EPSIvb3B0L2ZpcmVleWUvYmluL3hhZ3QgLXYiCgojIENhcHR1cmUgdmVyc2lvbiBvdXRwdXQgYW5kIGVycm9ycwpDTURfT1VUUFVUPSQoJFNFUlZJQ0VfVkVSU0lPTl9DT01NQU5EIDI+L2Rldi9udWxsKQpTVERFUlJfT1VUUFVUPSQoJFNFUlZJQ0VfVkVSU0lPTl9DT01NQU5EIDI+JjEgPi9kZXYvbnVsbCkKCiMgRXh0cmFjdCBhY3R1YWwgc2VydmljZSB2ZXJzaW9uCkNBUFRVUkVfQUNUVUFMX1NFUlZJQ0VfVkVSU0lPTj0kKGVjaG8gIiRDTURfT1VUUFVUIiB8IGdyZXAgLW9QICdedlxzKlxLW1xkLl0rJykKCiMgRnVuY3Rpb24gdG8gY29tcGFyZSB2ZXJzaW9ucwpjb21wYXJlX3ZlcnNpb25fZXF1YWxfb3JfZ3JlYXRlcl90aGFuKCkgewogICAgWyAiJDEiID0gIiQyIiBdIHx8IFsgIiQocHJpbnRmICclc1xuJyAiJDEiICIkMiIgfCBzb3J0IC1WIHwgaGVhZCAtbiAxKSIgIT0gIiQxIiBdCn0KCiMgQXNzZXNzIGFjdHVhbCBzZXJ2aWNlIHZlcnNpb24gYWdhaW5zdCBleHBlY3RlZCB2YWx1ZQppZiBbWyAtbiAiJENBUFRVUkVfQUNUVUFMX1NFUlZJQ0VfVkVSU0lPTiIgXV07IHRoZW4KICAgIGlmIGNvbXBhcmVfdmVyc2lvbl9lcXVhbF9vcl9ncmVhdGVyX3RoYW4gIiRDQVBUVVJFX0FDVFVBTF9TRVJWSUNFX1ZFUlNJT04iICIkRVhQRUNURURfVkFMVUUiOyB0aGVuCiAgICAgICAgZWNobyAiQ2hlY2sgc3RhdHVzOiBDb21wbGlhbnQuIgogICAgICAgIGV4aXQgIiR7WENDREZfUkVTVUxUX1BBU1M6LTEwMX0iCiAgICBlbHNlCiAgICAgICAgZWNobyAiQ2hlY2sgc3RhdHVzOiBOb24tY29tcGxpYW50LiBDdXJyZW50IHZlcnNpb24gJENBUFRVUkVfQUNUVUFMX1NFUlZJQ0VfVkVSU0lPTiBpcyBvdXRkYXRlZC4gVGhlIG1pbmltdW0gcmVxdWlyZWQgdmVyc2lvbiBpcyAkRVhQRUNURURfVkFMVUUuIgogICAgICAgIGV4aXQgIiR7WENDREZfUkVTVUxUX0ZBSUw6LTEwMn0iCiAgICBmaQplbHNlCiAgICBpZiBbWyAtbiAiJFNUREVSUl9PVVRQVVQiIF1dOyB0aGVuCiAgICAgICAgZWNobyAiQ2hlY2sgc3RhdHVzOiBFcnJvci4gRXJyb3IgZGV0YWlsczogJFNUREVSUl9PVVRQVVQiCiAgICAgICAgZXhpdCAiJHtYQ0NERl9SRVNVTFRfRVJST1I6LTEwM30iCiAgICBmaQpmaQo= | base64 -d | bash"
+      expect        : "^Check status: Compliant"
+      match_case    : YES
+      timeout       : "300"
+      dont_echo_cmd : YES
+    </custom_item>
+
+</check_type>
