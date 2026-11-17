@@ -24,4 +24,28 @@
   dont_echo_cmd : YES
 </custom_item>
 
+# ============================================================
+# CHECK 3: test_fail.sh  [EVALUATION]
+# ============================================================
+<custom_item>
+  type          : CMD_EXEC
+  description   : "TEST - Ensure test marker file exists (expected FAILED)"
+  cmd           : "echo IyEvYmluL2Jhc2gKIwojIE5hbWUgICAgICAgRGF0ZSAgICAgICBEZXNjcmlwdGlvbgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiMgVEVTVCAgICAgICAxNy8xMS8yMDI2ICBURVNUIC0gRW5zdXJlIHRlc3QgbWFya2VyIGZpbGUgZXhpc3RzIChleHBlY3RlZCBGQUlMRUQpCgojIFRoaXMgZmlsZSBkb2VzIG5vdCBleGlzdCBvbiBhIG5vcm1hbCBtYWNoaW5lLCBzbyB0aGlzIGNoZWNrIHNob3VsZCBmYWlsLgojIFRvIHNlZSBpdCB0dXJuIFBBU1NFRCwgY3JlYXRlIHRoZSBmaWxlIG9uIHRoZSB0YXJnZXQgYW5kIHNjYW4gYWdhaW46CiMgICAgIHN1ZG8gdG91Y2ggL3RtcC90ZW5hYmxlX2F1ZGl0X3Rlc3QKRklMRT0iL3RtcC90ZW5hYmxlX2F1ZGl0X3Rlc3QiCgppZiBbWyAtZiAiJEZJTEUiIF1dOyB0aGVuCiAgICBlY2hvICJDaGVjayBzdGF0dXM6IENvbXBsaWFudC4gJEZJTEUgZXhpc3RzIG9uICQoaG9zdG5hbWUpLiIKZWxzZQogICAgZWNobyAiQ2hlY2sgc3RhdHVzOiBOb24tY29tcGxpYW50LiAkRklMRSB3YXMgbm90IGZvdW5kIG9uICQoaG9zdG5hbWUpLiIKZmkK | base64 -d | bash"
+  expect        : "Check status ?: ?Compliant"
+  timeout       : "300"
+  dont_echo_cmd : YES
+</custom_item>
+
+# ============================================================
+# CHECK 4: test_pass.sh  [EVALUATION]
+# ============================================================
+<custom_item>
+  type          : CMD_EXEC
+  description   : "TEST - Ensure /etc/passwd exists (expected PASSED)"
+  cmd           : "echo IyEvYmluL2Jhc2gKIwojIE5hbWUgICAgICAgRGF0ZSAgICAgICBEZXNjcmlwdGlvbgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiMgVEVTVCAgICAgICAxNy8xMS8yMDI2ICBURVNUIC0gRW5zdXJlIC9ldGMvcGFzc3dkIGV4aXN0cyAoZXhwZWN0ZWQgUEFTU0VEKQoKIyAvZXRjL3Bhc3N3ZCBleGlzdHMgb24gZXZlcnkgTGludXggc3lzdGVtLCBzbyB0aGlzIGNoZWNrIHNob3VsZCBhbHdheXMgcGFzcy4KRklMRT0iL2V0Yy9wYXNzd2QiCgppZiBbWyAtZiAiJEZJTEUiIF1dOyB0aGVuCiAgICBlY2hvICJDaGVjayBzdGF0dXM6IENvbXBsaWFudC4gJEZJTEUgZXhpc3RzIG9uICQoaG9zdG5hbWUpLiIKZWxzZQogICAgZWNobyAiQ2hlY2sgc3RhdHVzOiBOb24tY29tcGxpYW50LiAkRklMRSB3YXMgbm90IGZvdW5kIG9uICQoaG9zdG5hbWUpLiIKZmkK | base64 -d | bash"
+  expect        : "Check status ?: ?Compliant"
+  timeout       : "300"
+  dont_echo_cmd : YES
+</custom_item>
+
 </check_type>
