@@ -5,8 +5,14 @@ on:
     paths:
       - 'powershell/*.ps1'
       - 'audit_convert.py'
+      - 'bash/*.sh'
+      - 'bash_to_audit.py'
       - '.github/workflows/convert-audit.yml'
   workflow_dispatch:
+
+concurrency:
+  group: convert-audit
+  cancel-in-progress: false
 
 jobs:
   convert:
@@ -16,19 +22,48 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Detect which folders changed
+        if: github.event_name == 'push'
+        uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            powershell:
+              - 'powershell/*.ps1'
+              - 'audit_convert.py'
+              - '.github/workflows/convert-audit.yml'
+            bash:
+              - 'bash/*.sh'
+              - 'bash_to_audit.py'
+              - '.github/workflows/convert-audit.yml'
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Convert PowerShell scripts to audit file
+      - name: Convert PowerShell scripts
+        if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.powershell == 'true'
         run: |
-          python audit_convert.py -n "Audit_File"
-          grep -c "<custom_item>" audits/Audit_File.audit
+          python audit_convert.py -n "powershell"
+          grep -c "<custom_item>" audits/powershell.audit
 
-      - name: Commit audit file to the repo
+      - name: Convert bash scripts
+        if: github.event_name == 'workflow_dispatch' || steps.changes.outputs.bash == 'true'
+        run: |
+          python bash_to_audit.py -n "bash"
+          grep -c "<custom_item>" audits/bash.audit
+
+      - name: Commit audit files to the repo
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add audits/Audit_File.audit
-          git commit -m "Update audit file" || echo "No changes"
+          for f in audits/powershell.audit audits/bash.audit; do
+            [ -f "$f" ] && git add "$f"
+          done
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git commit -m "Update audit files"
+          git pull --rebase
           git push
