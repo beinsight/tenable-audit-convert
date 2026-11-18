@@ -71,7 +71,7 @@
 # ============================================================
 <custom_item>
   type: AUDIT_POWERSHELL
-  description: "Ensure \"Do not display the lock screen\" is set to \"Disable\" or \"Not Configured\""
+  description: "Ensure 'Do not display the lock screen' is set to 'Disable' or 'Not Configured'"
   value_type: POLICY_TEXT
   value_data: "Check status ?: ?Compliant"
   check_type: CHECK_REGEX
