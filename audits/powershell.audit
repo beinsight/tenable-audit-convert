@@ -2,33 +2,7 @@
 <group_policy:"powershell">
 
 # ============================================================
-# CHECK 1: script2.ps1  [INFORMATIONAL]
-# ============================================================
-<custom_item>
-  type: AUDIT_POWERSHELL
-  description: "script2"
-  value_type: POLICY_TEXT
-  value_data: ""
-  powershell_args: 'VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAiAFQAbwB0AG8AIgAKAHQAcgB5ACAAewB7AA=='
-  ps_encoded_args: YES
-  only_show_cmd_output: YES
-</custom_item>
-
-# ============================================================
-# CHECK 2: script3.ps1  [INFORMATIONAL]
-# ============================================================
-<custom_item>
-  type: AUDIT_POWERSHELL
-  description: "script3"
-  value_type: POLICY_TEXT
-  value_data: ""
-  powershell_args: 'VwByAGkAdABlAC0AVwBhAHIAbgBpAG4AZwAgACIATABpAG4AZQAgADQAIgA='
-  ps_encoded_args: YES
-  only_show_cmd_output: YES
-</custom_item>
-
-# ============================================================
-# CHECK 3: test_fail.ps1  [EVALUATION]
+# CHECK 1: test_fail.ps1  [EVALUATION]
 # ============================================================
 <custom_item>
   type: AUDIT_POWERSHELL
@@ -41,7 +15,7 @@
 </custom_item>
 
 # ============================================================
-# CHECK 4: test_pass.ps1  [EVALUATION]
+# CHECK 2: test_pass.ps1  [EVALUATION]
 # ============================================================
 <custom_item>
   type: AUDIT_POWERSHELL
@@ -54,7 +28,7 @@
 </custom_item>
 
 # ============================================================
-# CHECK 5: testscript.ps1  [EVALUATION]
+# CHECK 3: testscript.ps1  [EVALUATION]
 # ============================================================
 <custom_item>
   type: AUDIT_POWERSHELL
@@ -67,7 +41,7 @@
 </custom_item>
 
 # ============================================================
-# CHECK 6: testscript2.ps1  [EVALUATION]
+# CHECK 4: testscript2.ps1  [EVALUATION]
 # ============================================================
 <custom_item>
   type: AUDIT_POWERSHELL
@@ -80,7 +54,7 @@
 </custom_item>
 
 # ============================================================
-# CHECK 7: testscript3.ps1  [EVALUATION]
+# CHECK 5: testscript3.ps1  [EVALUATION]
 # ============================================================
 <custom_item>
   type: AUDIT_POWERSHELL
@@ -93,7 +67,7 @@
 </custom_item>
 
 # ============================================================
-# CHECK 8: testscript4.ps1  [INFORMATIONAL]
+# CHECK 6: testscript4.ps1  [INFORMATIONAL]
 # ============================================================
 <custom_item>
   type: AUDIT_POWERSHELL
@@ -101,19 +75,6 @@
   value_type: POLICY_TEXT
   value_data: ""
   powershell_args: 'IwAjACAATgBhAG0AZQAgACAAIAAgACAAIABEAGEAdABlACAAIAAgACAAIAAgACAAIAAgAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAKACMAIAAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ALQAtAC0ACgAjACAASAAuAEcAQQBEAEEAQwBIAEEAIAAgADAANwAvADAANQAvADIAMAAyADYAIAAgACAATwB1AHQAcAB1AHQAIABtAGUAbQBiAGUAcgBzACAAbwBmACAAbABvAGMAYQBsACAAYQBkAG0AaQBuAGkAcwB0AHIAYQB0AG8AcgBzACAAZwByAG8AdQBwACAAKABTAC0AMQAtADUALQAzADIALQA1ADQANAApAAoACgBUAHIAeQAgAHsACgAgACAAIAAgACQARwByAG8AdQBwAFMASQBEACAAPQAgACIAUwAtADEALQA1AC0AMwAyAC0ANQA0ADQAIgAKACAAIAAgACAAJABNAGUAbQBiAGUAcgBMAGkAcwB0ACAAPQAgAEAAKAApAAoACgAgACAAIAAgACQATABvAGMAYQBsAEcAcgBvAHUAcAAgAD0AIABHAGUAdAAtAEwAbwBjAGEAbABHAHIAbwB1AHAAIAAtAFMASQBEACAAJABHAHIAbwB1AHAAUwBJAEQAIAAtAEUAcgByAG8AcgBBAGMAdABpAG8AbgAgAFMAdABvAHAACgAgACAAIAAgACQATQBlAG0AYgBlAHIAcwAgAD0AIABHAGUAdAAtAEwAbwBjAGEAbABHAHIAbwB1AHAATQBlAG0AYgBlAHIAIAAtAEcAcgBvAHUAcAAgACQATABvAGMAYQBsAEcAcgBvAHUAcAAgAC0ARQByAHIAbwByAEEAYwB0AGkAbwBuACAAUwBpAGwAZQBuAHQAbAB5AEMAbwBuAHQAaQBuAHUAZQAKAAoAIAAgACAAIABmAG8AcgBlAGEAYwBoACAAKAAkAE0AZQBtAGIAZQByACAAaQBuACAAJABNAGUAbQBiAGUAcgBzACkAIAB7AAoAIAAgACAAIAAgACAAIAAgACQATQBlAG0AYgBlAHIATgBhAG0AZQAgAD0AIAAkAE0AZQBtAGIAZQByAC4ATgBhAG0AZQAKACAAIAAgACAAIAAgACAAIAAkAE0AZQBtAGIAZQByAEMAbABhAHMAcwAgAD0AIAAkAE0AZQBtAGIAZQByAC4ATwBiAGoAZQBjAHQAQwBsAGEAcwBzAC4AVABvAEwAbwB3AGUAcgAoACkACgAgACAAIAAgACAAIAAgACAACgAgACAAIAAgACAAIAAgACAAJABNAGUAbQBiAGUAcgBQAHIAbwB2AGkAZABlAHIAIAA9ACAAIgBsAG8AYwBhAGwAIgAKACAAIAAgACAAIAAgACAAIABpAGYAIAAoACQATQBlAG0AYgBlAHIALgBQAHIAaQBuAGMAaQBwAGEAbABTAG8AdQByAGMAZQAgAC0AbgBlACAAIgBMAG8AYwBhAGwAIgApACAAewAKACAAIAAgACAAIAAgACAAIAAgACAAIAAgACQATQBlAG0AYgBlAHIAUAByAG8AdgBpAGQAZQByACAAPQAgACIAZABvAG0AYQBpAG4AIgAKACAAIAAgACAAIAAgACAAIAB9AAoACgAgACAAIAAgACAAIAAgACAAJABNAGUAbQBiAGUAcgBMAGkAcwB0ACAAKwA9ACAAIgBbACQATQBlAG0AYgBlAHIATgBhAG0AZQA7ACQATQBlAG0AYgBlAHIAQwBsAGEAcwBzACwAJABNAGUAbQBiAGUAcgBQAHIAbwB2AGkAZABlAHIAXQAiAAoAIAAgACAAIAB9AAoACgAgACAAIAAgAGkAZgAgACgAJABNAGUAbQBiAGUAcgBMAGkAcwB0AC4AQwBvAHUAbgB0ACAALQBnAHQAIAAwACkAIAB7AAoAIAAgACAAIAAgACAAIAAgACQATwB1AHQAcAB1AHQAUwB0AHIAaQBuAGcAIAA9ACAAJABNAGUAbQBiAGUAcgBMAGkAcwB0ACAALQBqAG8AaQBuACAAIgAgACIACgAgACAAIAAgACAAIAAgACAAVwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAiAEMAaABlAGMAawAgAFMAdABhAHQAdQBzACAAOgAgAEMAbwBtAHAAbABpAGEAbgB0AC4AIABsAGkAcwB0ACAAbwBmACAAbQBlAG0AYgBlAHIAPQAkAE8AdQB0AHAAdQB0AFMAdAByAGkAbgBnACIACgAgACAAIAAgAH0ACgAgACAAIAAgAGUAbABzAGUAIAB7AAoAIAAgACAAIAAgACAAIAAgAFcAcgBpAHQAZQAtAE8AdQB0AHAAdQB0ACAAIgBDAGgAZQBjAGsAIABTAHQAYQB0AHUAcwAgADoAIABDAG8AbQBwAGwAaQBhAG4AdAAuACAAbABpAHMAdAAgAG8AZgAgAG0AZQBtAGIAZQByAD0ATgBvACAAbQBlAG0AYgBlAHIAcwAgAGYAbwB1AG4AZAAiAAoAIAAgACAAIAB9AAoAfQAKAEMAYQB0AGMAaAAgAHsACgAgACAAIAAgAFcAcgBpAHQAZQAtAE8AdQB0AHAAdQB0ACAAIgBDAGgAZQBjAGsAIABTAHQAYQB0AHUAcwAgADoAIABFAHIAcgBvAHIALgAgACQAXwAiAAoAfQAKAA=='
-  ps_encoded_args: YES
-  only_show_cmd_output: YES
-</custom_item>
-
-# ============================================================
-# CHECK 9: testscript5.ps1  [INFORMATIONAL]
-# ============================================================
-<custom_item>
-  type: AUDIT_POWERSHELL
-  description: "testscript5"
-  value_type: POLICY_TEXT
-  value_data: ""
-  powershell_args: 'CgA='
   ps_encoded_args: YES
   only_show_cmd_output: YES
 </custom_item>
