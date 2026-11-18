@@ -131,9 +131,13 @@ def format_output_filename(name):
     return filename
 
 
-def escape_audit_string(text):
-    """Escapes backslashes and double quotes for a double-quoted .audit string."""
-    return text.replace("\\", "\\\\").replace('"', '\\"')
+def clean_audit_string(text):
+    """
+    Makes text safe inside a double-quoted .audit string (description, policy name).
+    Double quotes are replaced with single quotes: Tenable does not accept the
+    escaped form \\" in these fields, so 'Ensure "X"' becomes 'Ensure 'X''.
+    """
+    return text.replace('"', "'")
 
 
 def get_sh_files_from_dir(directory_path):
@@ -219,7 +223,7 @@ def generate_consolidated_audit(policy_name, directory_path, force_info, force_e
             check_num=index, check_name=file_name,
             mode="EVALUATION" if mode == "EVAL" else "INFORMATIONAL")
         item = ITEM_TEMPLATE.format(
-            check_name=escape_audit_string((INFO_PREFIX if mode == "INFO" else "") + description),
+            check_name=clean_audit_string((INFO_PREFIX if mode == "INFO" else "") + description),
             encoded_payload=bash_to_base64(script_content),
             expect_regex=PASS_REGEX if mode == "EVAL" else INFO_REGEX,
             timeout=timeout)
